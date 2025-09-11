@@ -5,11 +5,15 @@ Homework reflection 1
 
 1. In Coding Quiz 1, you are asked to find the distance of the farthest match in a set.  Is this farthest match distance too far to be a meaningful match?  How can you decide this?
 
+**The farthest match we saw had a distance of about 0.21. On its own, that number doesn’t mean much unless we compare it to the scale of the Z values. If Z values mostly run from 0 to 1, then 0.21 is a pretty big jump. I think it is important to have context on what is being analyzed to better understand if this would be a meaninful match. There needs to be domain knowledge of the data. If Z represents something like age (in years), then a difference of 0.21 years is tiny, but if Z represents something like probability scores from 0 to 1, then 0.21 is pretty big.**
+
 2. In Coding Quiz 1, there are two approaches to matching: 
 (A) Picking the best match X = 0 corresponding to each X = 1 using Z values.
 (B) Using radius_neighbors to pick all matches X = 0 within a distance of 0.2 of each X = 1.
 
 Invent your own type of matching similar to 1 and 2 (or look one up on the internet), which has a different way to pick the matches in X = 0.  Clearly explain the approach you invented or found.
+
+**Instead of just picking the single closest match (Approach A) or all matches within 0.2 (Approach B), I could pick the two closest matches for each treated unit and then average their Y values and that way treated unit is compared against a “small group” of controls rather than depending on just one or however many happen to fall inside 0.2.**
 
 Homework reflection 2
 
