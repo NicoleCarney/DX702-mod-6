@@ -19,7 +19,11 @@ Homework reflection 2
 
 1. Invent an example situation that would use fixed effects.
 
+**To estimate whether a parent-aide program (a program often referred to parents in social work)reduces time to a stable placement for children, I’d use a two-way fixed-effects model: family fixed effects to compare each family to itself over time (absorbing all time-invariant differences like baseline risk, neighborhood, support) and time fixed effects (by month) to net out system-wide shocks (policy changes, court delays, holidays). The treatment is “parent-aide active this month,” and the coefficient reads as the within-family effect, aligned with this week’s focus on controlling for unobserved, time-invariant confounders.**
+
 2. Write a Python program that performs a bootstrap simulation to find the variance in the mean of the Pareto distribution when different samples are taken.  Explain what you had to do for this.  As you make the full sample size bigger (for the same distribution), what happens to the variance of the mean of the samples?  Does it stay about the same, get smaller, or get bigger?
+
+**I draw a sample from a Pareto distribution, then bootstrap by resampling that data with replacement many times, computing the sample mean each time and taking the variance across those bootstrap means. Repeating this for increasing sample sizes shows that the variance of the sample mean gets smaller as n grows (approximately like 1/n for a well-behaved Pareto with finite variance).**
 
 Homework reflection 3
 
