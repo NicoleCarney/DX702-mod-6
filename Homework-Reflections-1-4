@@ -29,7 +29,11 @@ Homework reflection 3
 
 1. In the event study in Coding Quiz 3, how would we go about testing for a change in the second derivative as well?
 
+**In the event study we only tested for jumps and slope changes. If I wanted to test for a second derivative change, I’d basically add a “curvature” term something like a squared time interaction to see if the bend of the line changes after the event.**
+
 2. Create your own scenario that illustrates differences-in-differences. Describe the story behind the data and show whether there is a nonzero treatment effect.
+
+**In a simple scenario say two schools start out with the same average test scores. Then School A introduces free lunch, School B does not. Afterward, School A’s scores improve more than School B’s. That’s like what we did with homework_3.2.a and 3.2.b cause the treatment group’s “after” outcome went up compared to the control, so the difference-in-differences shows a real treatment effect.**
 
 Homework reflection 4
 
