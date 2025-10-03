@@ -39,4 +39,35 @@ Homework reflection 4
 
 1. The Coding Quiz gives two options for instrumental variables.  For the second item (dividing the range of W into multiple ranges), explain how you did it, show your code, and discuss any issues you encountered.
 
+**For the second item i split W into bins and compared the average distances in Y and X between Z = 1 and = 0 inside each of the bins and then from there took the ratios and averaged them but some bins didn't have both values of Z so they were skipped**
+
+bins = np.linspace(df_iv["W"].min(), df_iv["W"].max(), 10)
+df_iv["W_bin"] = pd.cut(df_iv["W"], bins)
+
+effects = []
+for _, subset in df_iv.groupby("W_bin"):
+    if subset["Z"].nunique() == 2:
+        y_diff = subset[subset["Z"]==1]["Y"].mean() - subset[subset["Z"]==0]["Y"].mean()
+        x_diff = subset[subset["Z"]==1]["X"].mean() - subset[subset["Z"]==0]["X"].mean()
+        if x_diff != 0:
+            effects.append(y_diff/x_diff)
+
+effect_method2 = np.mean(effects)
+
+
 2. Plot the college outcome (Y) vs. the test score (X) in a small range of test scores around 80. On the plot, compare it with the Y probability predicted by logistic regression. The ground truth Y value is 0 or 1; don't just plot 0 or 1 - that will make it unreadable.  Find some way to make it look better than that.
+
+**Because the cutoff was 80 I fit a logistical regression of Y and X in the range of 70 - 90 so it was still wide enough to see the trend w/o the rest of the data crowding the plot and instead of plotting the raw 0/1 outcomes I showed them as scattered points and then just overlaid the predicted probability curve on top**
+
+log_reg = LogisticRegression()
+mask = (df_a["X"]>=70) & (df_a["X"]<=90)
+x = df_a.loc[mask,"X"].values.reshape(-1,1)
+y = df_a.loc[mask,"Y"].values
+log_reg.fit(x,y)
+
+x_test = np.linspace(70,90,200).reshape(-1,1)
+y_pred = log_reg.predict_proba(x_test)[:,1]
+
+plt.scatter(x,y,alpha=0.3)
+plt.plot(x_test,y_pred,color="red")
+plt.axvline(80,color="blue",linestyle="--")
